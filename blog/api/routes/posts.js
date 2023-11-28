@@ -7,11 +7,11 @@ const router = express.Router();
 
 //creating a mysql databse connection
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "RootPasswordmysql1",
-    database:"Blog"
- });
+  host: process.env.host,
+  user: process.env.user ,
+  password:  process.env.password,
+  database:  process.env.database
+});
 
 
 const upload = multer({dest:'./uploads'});
