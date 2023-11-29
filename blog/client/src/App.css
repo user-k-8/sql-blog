@@ -184,10 +184,12 @@ body{
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border: 1.5px solid grey;
     margin-top: -1rem;
     padding-bottom: 1rem;
     border-radius: 10px;
+    min-height: 260px;
 }
 
 .card-text>h3{

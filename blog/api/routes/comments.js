@@ -37,6 +37,7 @@ router.delete('/api/deleteComment', async (req, res)=>{
     var sql = `DELETE FROM comments WHERE comment_id = ${comment_id}`;
     db.query(sql, function (err, result) {
       if (err) throw err;
+      console.log('comment deleted')
       return res.status(200).send({message: "Comment deleted"});
   });    
 })

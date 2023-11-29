@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import Modal from './Modal';
 
 const Comments = () => {
@@ -41,7 +41,8 @@ setForm({...form, [name]: type==='checkbox' ? checked : value})
 
 }
 
-const fetchData = ()=>{
+useEffect(()=>{
+
   fetch('https://sql-blog.onrender.com/comments/api/allComments', {
     method: 'POST',
     headers: {
@@ -59,8 +60,9 @@ const fetchData = ()=>{
     console.error('Error:', error);
   });
 
-}
-fetchData();
+})
+
+
 
 const handleSubmit = (event)=>{
 
@@ -73,9 +75,9 @@ fetch('https://sql-blog.onrender.com/comments/api/addComment', {
   },
   body: JSON.stringify(form)
 })
-.then(response => response.json())
+.then(response =>{response.json()})
 .then(data => {
-  //  response data from the server
+  //  response data 
    console.log(data)
 })
 .catch(error => {
@@ -83,7 +85,7 @@ fetch('https://sql-blog.onrender.com/comments/api/addComment', {
 });
 setModalOpen(false);
 alert('Comment added!');
-setCommentForm({commentButton:"Add Comment", formDisplay:"none"})
+setCommentForm({commentButton:"Add Comment", formDisplay:"none"});
 }
 
 const handleDelete =(element)=>{
@@ -96,16 +98,16 @@ const handleDelete =(element)=>{
     },
     body: JSON.stringify({comment_id: element.comment_id})
   })
-  .then(response => response.json())
+  .then(response => {response.json()})
   .then(data => {
     console.log(data)
+   
   })
   .catch(error => {
     console.error('Error:', error);
   });
   setModalOpen2(false);
   alert('Comment deleted!');
-  setLoad(prev=> !prev)
 }
 
 const handleComment = ()=>{
