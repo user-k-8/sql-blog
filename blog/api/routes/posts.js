@@ -10,7 +10,7 @@ const upload = multer({dest:'./uploads'});
 //get all posts
 router.get('/api/allposts', (req, res) => {
  
-        var sql = `SELECT * FROM Posts ORDER BY post_id DESC`;
+        var sql = `SELECT * FROM posts ORDER BY post_id DESC`;
          db.query(sql, function (err, result) {
           if (err) throw err;
           return res.send(result)
@@ -25,7 +25,7 @@ router.post('/api/upload',upload.array('images', 2), async (req, res) => {
 
 //insert post
 
-    var sql = `INSERT INTO Posts (title, content, author, published_date, user_id) VALUES ( "${title}", "${content}", "${author}",  '${published_date}',  ${user_id})`;
+    var sql = `INSERT INTO posts (title, content, author, published_date, user_id) VALUES ( "${title}", "${content}", "${author}",  '${published_date}',  ${user_id})`;
     db.query(sql, function (err, result) {
       if (err) throw err;
       console.log("post created");
@@ -56,7 +56,7 @@ const {post_id} = req.body;
 
 //delete  post
 
-  var sql = `DELETE FROM Posts WHERE post_id = ${post_id}`;
+  var sql = `DELETE FROM posts WHERE post_id = ${post_id}`;
   db.query(sql, function (err, result) {
     if (err) throw err;
     console.log("post deleted");
@@ -69,7 +69,7 @@ router.post('/api/addView', async (req, res)=>{
 
   const {post_id} = req.body;
 
-    var sql = `UPDATE Posts SET views = views + 1 WHERE post_id = ${post_id}`;
+    var sql = `UPDATE posts SET views = views + 1 WHERE post_id = ${post_id}`;
     db.query(sql, function (err, result) {
       if (err) throw err;
       console.log("post viewed");
@@ -82,7 +82,7 @@ router.post('/api/views', async (req, res)=>{
 
   const {post_id} = req.body;
   
-    var sql = `SELECT views FROM Posts WHERE post_id = ${post_id}`;
+    var sql = `SELECT views FROM posts WHERE post_id = ${post_id}`;
      db.query(sql, function (err, result) {
       if (err) throw err;
       console.log("post viewed");
