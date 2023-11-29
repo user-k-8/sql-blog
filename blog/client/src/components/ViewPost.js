@@ -32,9 +32,9 @@ const ViewPost = () => {
   const storedUser= JSON.parse(localStorage.getItem("blogLogin"));
 
   const handleDelete =()=>{
-
+  
+    //delete post
     try {
-      console.log(element)
       const response =  fetch('https://sql-blog.onrender.com/posts/api/deletePost', {
         method: 'DELETE',
         headers: {
@@ -59,7 +59,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
 </svg>)
 
  useEffect(()=>{
-
+   //fetch views
   fetch('https://sql-blog.onrender.com/posts/api/views', {
     method: 'POST',
     headers: {

@@ -43,7 +43,7 @@ setForm({...form, [name]: type==='checkbox' ? checked : value})
 const handleSubmit = (e)=>{
 
    e.preventDefault();
-
+//add post
   try {
     const response =  fetch('https://sql-blog.onrender.com/posts/api/upload', {
       method: 'POST',

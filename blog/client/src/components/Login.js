@@ -30,7 +30,7 @@ const handleSubmit =  (event)=>{
 })
 .then(response => response.json())
 .then(data => {
-    // response data from the server
+    // response data
     console.log('Response from server:', data);
     localStorage.setItem('blogLogin', JSON.stringify(data));
     if(data.status=="404"){

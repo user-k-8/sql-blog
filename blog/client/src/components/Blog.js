@@ -10,6 +10,7 @@ const Blog = () => {
 const [backendData, setBackendData] =useState([])
 
 const fetchData = ()=>{
+  //get posts
     fetch("https://sql-blog.onrender.com/posts/api/allposts").then(
       response => response.json()
     ).then(

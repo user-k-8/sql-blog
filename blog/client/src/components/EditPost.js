@@ -45,7 +45,7 @@ const EditPost = () => {
   const handleSubmit = async (e)=>{
 
      e.preventDefault();
-
+    //edit post
      try {
        const response = await  fetch('https://sql-blog.onrender.com/posts/api/editpost', {
         method: 'POST',

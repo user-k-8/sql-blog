@@ -7,7 +7,7 @@ const BlogPostCard = ({element}) => {
     const handleSelect=()=>{
   
        localStorage.setItem('selectedPost', JSON.stringify(element));
-
+       //add view
        fetch('https://sql-blog.onrender.com/posts/api/addView', {
         method: 'POST',
         headers: {
