@@ -1,8 +1,8 @@
 {
-  "name": "blog",
+  "name": "sql-blog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://user-k-8.github.io/blog/",
+  "homepage": "https://user-k-8.github.io/sql-blog",
   "dependencies": {
     "@chakra-ui/react": "^2.3.2",
     "@emotion/react": "^11.10.4",
