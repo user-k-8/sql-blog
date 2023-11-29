@@ -35,7 +35,7 @@ const ViewPost = () => {
 
     try {
       console.log(element)
-      const response =  fetch('http://localhost:4000/posts/api/deletePost', {
+      const response =  fetch('https://sql-blog.onrender.com/posts/api/deletePost', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
 
  useEffect(()=>{
 
-  fetch('http://localhost:4000/posts/api/views', {
+  fetch('https://sql-blog.onrender.com/posts/api/views', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'

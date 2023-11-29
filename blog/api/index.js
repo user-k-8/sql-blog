@@ -6,7 +6,23 @@ require('dotenv').config()// for .env file
 
 const app = express();
 
-  app.use(cors()); // Enable CORS with custom options
+const whitelist = [
+  'https://sql-blog.onrender.com',
+  'http://localhost:4000'
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+      if (whitelist.indexOf(origin) !== -1 || !origin) {
+          callback(null, true)
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions)); // Enable CORS with custom options
 
 const PORT = 4000
 

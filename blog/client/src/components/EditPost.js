@@ -47,7 +47,7 @@ const EditPost = () => {
      e.preventDefault();
 
      try {
-       const response = await  fetch('http://localhost:4000/posts/api/editpost', {
+       const response = await  fetch('https://sql-blog.onrender.com/posts/api/editpost', {
         method: 'POST',
         headers: {
          'Content-Type': 'application/json'

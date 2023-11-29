@@ -45,7 +45,7 @@ const handleSubmit = (e)=>{
    e.preventDefault();
 
   try {
-    const response =  fetch('http://localhost:4000/posts/api/upload', {
+    const response =  fetch('https://sql-blog.onrender.com/posts/api/upload', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

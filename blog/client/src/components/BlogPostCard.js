@@ -8,7 +8,7 @@ const BlogPostCard = ({element}) => {
   
        localStorage.setItem('selectedPost', JSON.stringify(element));
 
-       fetch('http://localhost:4000/posts/api/addView', {
+       fetch('https://sql-blog.onrender.com/posts/api/addView', {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json'
