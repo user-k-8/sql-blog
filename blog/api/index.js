@@ -8,7 +8,7 @@ const app = express();
 
   app.use(cors()); // Enable CORS with custom options
 
-const PORT = process.env.PORT || 4000
+const PORT = 4000
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
