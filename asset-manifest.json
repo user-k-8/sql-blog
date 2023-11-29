@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/sql-blog/static/css/main.1e90a2cd.css",
+    "main.css": "/sql-blog/static/css/main.fa097d69.css",
     "main.js": "/sql-blog/static/js/main.7c06ce25.js",
     "static/js/111.3a1a4bce.chunk.js": "/sql-blog/static/js/111.3a1a4bce.chunk.js",
     "static/media/b2.jpg": "/sql-blog/static/media/b2.69d279262cdd0b00cf82.jpg",
@@ -11,12 +11,12 @@
     "static/media/a.jpg": "/sql-blog/static/media/a.a8c546ce26bb8c744dfa.jpg",
     "static/media/c.jpg": "/sql-blog/static/media/c.05631fb330b60138c662.jpg",
     "index.html": "/sql-blog/index.html",
-    "main.1e90a2cd.css.map": "/sql-blog/static/css/main.1e90a2cd.css.map",
+    "main.fa097d69.css.map": "/sql-blog/static/css/main.fa097d69.css.map",
     "main.7c06ce25.js.map": "/sql-blog/static/js/main.7c06ce25.js.map",
     "111.3a1a4bce.chunk.js.map": "/sql-blog/static/js/111.3a1a4bce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e90a2cd.css",
+    "static/css/main.fa097d69.css",
     "static/js/main.7c06ce25.js"
   ]
 }
