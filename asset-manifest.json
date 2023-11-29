@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/sql-blog/static/css/main.1e90a2cd.css",
+    "main.js": "/sql-blog/static/js/main.99423680.js",
+    "static/js/111.3a1a4bce.chunk.js": "/sql-blog/static/js/111.3a1a4bce.chunk.js",
+    "static/media/b2.jpg": "/sql-blog/static/media/b2.69d279262cdd0b00cf82.jpg",
+    "static/media/blog-hero.jpg": "/sql-blog/static/media/blog-hero.d88224af199eef17be2f.jpg",
+    "static/media/MA.png": "/sql-blog/static/media/MA.a3a5a732b207bd3ab53c.png",
+    "static/media/logo2.png": "/sql-blog/static/media/logo2.231a2f25784b29e7f60c.png",
+    "static/media/3.jpg": "/sql-blog/static/media/3.6fd08b6d6371e265053a.jpg",
+    "static/media/a.jpg": "/sql-blog/static/media/a.a8c546ce26bb8c744dfa.jpg",
+    "static/media/c.jpg": "/sql-blog/static/media/c.05631fb330b60138c662.jpg",
+    "index.html": "/sql-blog/index.html",
+    "main.1e90a2cd.css.map": "/sql-blog/static/css/main.1e90a2cd.css.map",
+    "main.99423680.js.map": "/sql-blog/static/js/main.99423680.js.map",
+    "111.3a1a4bce.chunk.js.map": "/sql-blog/static/js/111.3a1a4bce.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1e90a2cd.css",
+    "static/js/main.99423680.js"
+  ]
+}
