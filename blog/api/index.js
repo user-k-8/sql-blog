@@ -6,41 +6,14 @@ require('dotenv').config()// for .env file
 
 const app = express();
 
-const whitelist = [
-  'https://sql-blog.onrender.com',
-  'http://localhost:4000'
-];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-      if (whitelist.indexOf(origin) !== -1 || !origin) {
-          callback(null, true)
-      } else {
-          callback(new Error('Not allowed by CORS'));
-      }
-  },
-  optionsSuccessStatus: 200
-}
-
-app.use(cors(corsOptions)); // Enable CORS with custom options
+app.use(cors()); // Enable CORS with custom options
 
 const PORT = 4000
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-//creating a mysql databse connection
-const con = mysql.createConnection({
-   host: process.env.host,
-   user: process.env.user ,
-   password:  process.env.password,
-   database:  process.env.database
-});
-
-con.connect(function(err){
-  if(err) throw err;
-  console.log("Connected!")
-});
 
 const postsRoute = require('./routes/posts')
 const commentsRoute = require('./routes/comments')
