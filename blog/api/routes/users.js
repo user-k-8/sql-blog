@@ -13,7 +13,7 @@ router.post('/register', async (req, res)=>{
     const {username, email, password}= req.body
 
    //check for duplilcate usernames in db
-    var sql = `SELECT email  FROM Users WHERE email = "${email}"`;
+    var sql = `SELECT email  FROM users WHERE email = "${email}"`;
     db.query(sql, async function (err, result) {
       if (err) throw err;
      console.log(result);
@@ -28,7 +28,7 @@ router.post('/register', async (req, res)=>{
     
     //store the new user
 
-        var sql = `INSERT INTO Users (username, email, password) VALUES ( "${username}", "${email}", "${hashedPwd}")`;
+        var sql = `INSERT INTO users (username, email, password) VALUES ( "${username}", "${email}", "${hashedPwd}")`;
         db.query(sql, function (err, result) {
           if (err) throw err;
           console.log("1 record inserted");
@@ -43,7 +43,7 @@ router.post('/login',  async (req, res)=>{
 
     const {email, password}= req.body
 
-        var sql = `SELECT email, password  FROM Users WHERE email = "${email}"`;
+        var sql = `SELECT email, password  FROM users WHERE email = "${email}"`;
           db.query(sql, function (err, result) {
           if (err) throw err;
           console.log(result)
@@ -59,7 +59,7 @@ router.post('/login',  async (req, res)=>{
          if (match) {
           console.log('logged in')
     
-            var sql = `SELECT user_id FROM Users WHERE email = "${email}"`;
+            var sql = `SELECT user_id FROM users WHERE email = "${email}"`;
             db.query(sql, function (err, result) {
               if (err) throw err;
               console.log(result[0].user_id);

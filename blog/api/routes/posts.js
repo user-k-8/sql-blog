@@ -40,7 +40,7 @@ router.post('/api/editpost', upload.array('images', 2), async (req, res) => {
 const {post_id, title, content, author, published_date, user_id, views} = req.body;
 //edit  post
 
-    var sql = `UPDATE Posts SET title= "${title}", content="${content}", author="${author}",  published_date= '${published_date}', views = ${views} WHERE post_id= ${post_id}`;
+    var sql = `UPDATE posts SET title= "${title}", content="${content}", author="${author}",  published_date= '${published_date}', views = ${views} WHERE post_id= ${post_id}`;
     db.query(sql, function (err, result) {
       if (err) throw err;
       console.log("post updated");
