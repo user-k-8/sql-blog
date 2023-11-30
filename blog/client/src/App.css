@@ -523,8 +523,9 @@ input,select,textarea {
     font-size: 1.8rem;
   line-height: 12px;
 }
-.footer-col>span{
+.footer-col>div{
     font-size: 1.2rem;
+    margin-top: 8px;
 }
 
 .footer-logo{
@@ -571,12 +572,16 @@ input:focus{
 @media screen and (max-width:768px){
     .nav-elements{
         flex-direction: column;
-        gap: 25px;
         padding-left: 8px;
         margin-top: 2rem;
         width: 100%;
         padding-bottom: 1rem;
+        gap:2px;
     }
+    .nav-elements>div{
+        margin-top: 20px;
+    }
+
 
     .bars{
         position: fixed;

@@ -58,10 +58,10 @@ return (
               style={{width:'fit-content' , display: window.innerWidth<'769' ? 'block' : 'none'}}
               onClick={()=>{setMenuOpened(false)}}> ✖ Close</button>
               
-              <Link to= {{pathname:'/', hash: "top"}} className='nav-txt'><div>Blog</div></Link>
-              <Link to= {{pathname:`/register`, hash: "register-top"}}  className='nav-txt'><div>Register</div></Link>
-              <Link to= {{pathname:path, hash: "login-top"}}  className='nav-txt' onClick={handleLogInOut}><div>{storedUser ? "Logout" : "Login"}</div></Link>
-              <Link to= {{pathname:postPath, hash: "create-top"}} className='nav-txt' onClick={checkLogin}><div>Create-post</div></Link>
+             <div><Link to= {{pathname:'/', hash: "top"}} className='nav-txt'>Blog</Link></div>
+             <div><Link to= {{pathname:`/register`, hash: "register-top"}}  className='nav-txt'>Register</Link></div>
+             <div><Link to= {{pathname:path, hash: "login-top"}}  className='nav-txt' onClick={handleLogInOut}>{storedUser ? "Logout" : "Login"}</Link></div>
+             <div><Link to= {{pathname:postPath, hash: "create-top"}} className='nav-txt' onClick={checkLogin}>Create-post</Link></div>
            </div>)}
     </div>
   )
