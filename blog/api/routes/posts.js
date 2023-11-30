@@ -50,7 +50,7 @@ const {post_id, title, content, author, published_date, user_id, views} = req.bo
 });
 
 //delete post
-router.delete('/api/deletePost', async (req, res)=>{
+router.post('/api/deletePost', async (req, res)=>{
         
 const {post_id} = req.body;
 

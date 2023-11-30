@@ -36,7 +36,7 @@ const ViewPost = () => {
     //delete post
     try {
       const response =  fetch('https://sql-blog.onrender.com/posts/api/deletePost', {
-        method: 'DELETE',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

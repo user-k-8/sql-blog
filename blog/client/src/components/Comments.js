@@ -92,7 +92,7 @@ const handleDelete =(element)=>{
 
   //delete comment
   fetch('https://sql-blog.onrender.com/comments/api/deleteComment', {
-    method: 'DELETE',
+    method: 'POST',
     headers: {
         'Content-Type': 'application/json'
     },

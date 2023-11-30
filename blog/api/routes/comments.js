@@ -22,7 +22,7 @@ router.post('/api/addComment', async (req, res)=>{
     
     //insert comment
 
-        var sql = `INSERT INTO comments (comment, user_id, post_id) VALUES (  "${comment}",  '${user_id}',  ${post_id})`;
+        var sql = `INSERT INTO comments (comment, user_id, post_id) VALUES (  "${comment}",  ${user_id},  ${post_id})`;
         db.query(sql, function (err, result) {
           if (err) throw err;
           console.log("comment created");
@@ -31,7 +31,7 @@ router.post('/api/addComment', async (req, res)=>{
 })
 
 //delete comment
-router.delete('/api/deleteComment', async (req, res)=>{
+router.post('/api/deleteComment', async (req, res)=>{
   const {comment_id} = req.body;
 
     var sql = `DELETE FROM comments WHERE comment_id = ${comment_id}`;
