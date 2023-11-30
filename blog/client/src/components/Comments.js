@@ -146,7 +146,7 @@ return (
          comments.map((element)=>(
           <div className='comment-wrapper'>
               <h3>{element.username}</h3>
-              <p>{element.comment}</p>
+              <p className='comment-content'>{element.comment}</p>
               <button onClick={handleModalOpen2} className='blog-btn'  style={{display: storedUser ? storedUser.user_id == element.user_id ? "flex" : "none":"none" }}  >Delete</button>
               <Modal isOpen={modalOpen2} onClose={handleModalClose2} handleSubmit={()=>{handleDelete(element)}}>
                  <p style={{color:"black"}}>Are you sure you want to delete this comment?</p>

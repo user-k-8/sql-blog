@@ -490,6 +490,10 @@ input,select,textarea {
     margin-bottom: 2rem;
     color: white;
 }
+.comment-wrapper>p{
+    width: 90%;
+    word-wrap: break-word;
+}
 .comment-form{
     width: 100%;
    display: flex;
@@ -677,6 +681,10 @@ input:focus{
     .blog-post-input{
         width: 70vw;
     }
+    .comment-wrapper>p{
+        width: 90%;
+        word-wrap: break-word;
+    }
 }
 
 @media screen and (max-width:390px){
@@ -746,5 +754,9 @@ input:focus{
     .comment-wrapper{
         width: 80%;
        
+    }
+    .comment-wrapper>p{
+        width: 90%;
+        word-wrap: break-word;
     }
 }
