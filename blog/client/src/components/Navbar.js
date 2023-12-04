@@ -8,7 +8,7 @@ const Navbar = () => {
   const mobile = window.innerWidth<=768? true: false;
   const [menuOpened, setMenuOpened] = React.useState(false)
 
-  const storedUser = JSON.parse(localStorage.getItem("blogLogin"));
+  const storedUser = JSON.parse(localStorage.getItem("blog2Login"));
   const [postPath, setPostPath] =useState('')
   const [path, setPath]= useState('')
 
@@ -35,7 +35,7 @@ const checkLogin= ()=>{
 const handleLogInOut =()=>{
     
      if(storedUser){
-      localStorage.removeItem("blogLogin")
+      localStorage.removeItem("blog2Login")
      }
      else{
      setPath('/login')

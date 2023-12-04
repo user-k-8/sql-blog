@@ -32,7 +32,7 @@ const handleSubmit =  (event)=>{
 .then(data => {
     // response data
     console.log('Response from server:', data);
-    localStorage.setItem('blogLogin', JSON.stringify(data));
+    localStorage.setItem('blog2Login', JSON.stringify(data));
     if(data.status=="404"){
       alert('Account does not exist! Enter correct email or register for an account')
     }
@@ -40,7 +40,7 @@ const handleSubmit =  (event)=>{
       alert('Password invalid!')
     }
     else{
-      localStorage.setItem('blogLogin', JSON.stringify(data));
+      localStorage.setItem('blog2Login', JSON.stringify(data));
       alert('Login successful!');
       navigate('/')   
     }

@@ -64,8 +64,8 @@ router.post('/login',  async (req, res)=>{
               if (err) throw err;
               console.log(result[0].user_id);
 
-              let blogLogin = {userEmail: email, loginStatus:"LoggedIn", user_id: result[0].user_id};
-              return  res.status(200).send(blogLogin)
+              let blog2Login = {userEmail: email, loginStatus:"LoggedIn", user_id: result[0].user_id};
+              return  res.status(200).send(blog2Login)
             });   
     
         } 

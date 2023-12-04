@@ -22,7 +22,7 @@ const Comments = () => {
 
   const [selected, setSelected] = useState(JSON.parse(localStorage.getItem("selectedPost")))
 
-  const storedUser = JSON.parse(localStorage.getItem("blogLogin"));
+  const storedUser = JSON.parse(localStorage.getItem("blog2Login"));
 
   const [form, setForm] = useState( {
     comment:"",

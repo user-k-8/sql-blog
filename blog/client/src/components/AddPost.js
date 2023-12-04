@@ -18,7 +18,7 @@ const AddPost = () => {
     setModalOpen(false);
   };
 
-  const storedUser= JSON.parse(localStorage.getItem("blogLogin"));
+  const storedUser= JSON.parse(localStorage.getItem("blog2Login"));
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();

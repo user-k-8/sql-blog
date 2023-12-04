@@ -29,7 +29,7 @@ const ViewPost = () => {
   const firsthalfIndex= arr.length/2
   const section1 = arr.slice(0,firsthalfIndex).join('.')
   const section2= arr.slice(firsthalfIndex,arr.length).join('.');
-  const storedUser= JSON.parse(localStorage.getItem("blogLogin"));
+  const storedUser= JSON.parse(localStorage.getItem("blog2Login"));
 
   const handleDelete =()=>{
   
