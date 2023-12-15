@@ -12,7 +12,7 @@ const [backendData, setBackendData] =useState([])
 
 const fetchData = ()=>{
  // get posts
-    fetch("http://localhost:4000/posts/api/allposts").then(
+    fetch("https://sql-blog.onrender.com/posts/api/allposts").then(
       response => response.json()
     ).then(
       data=> {

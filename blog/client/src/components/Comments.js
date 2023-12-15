@@ -43,7 +43,7 @@ setForm({...form, [name]: type==='checkbox' ? checked : value})
 
 useEffect(()=>{
   //fetch comments
-  fetch('http://localhost:4000/comments/api/allComments', {
+  fetch('https://sql-blog.onrender.com/comments/api/allComments', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ const handleSubmit = (event)=>{
 
 event.preventDefault();
 //add comment
-fetch('http://localhost:4000/comments/api/addComment', {
+fetch('https://sql-blog.onrender.com/comments/api/addComment', {
   method: 'POST',
   headers: {
       'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ setCommentForm({commentButton:"Add Comment", formDisplay:"none"});
 const handleDelete =(element)=>{
 
   //delete comment
-  fetch('http://localhost:4000/comments/api/deleteComment', {
+  fetch('https://sql-blog.onrender.com/comments/api/deleteComment', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

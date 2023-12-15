@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {useState} from "react"; 
 import Modal from './Modal';
 import {ThreeDots} from 'react-loader-spinner'
+import env from "react-dotenv";
 
 const EditPost = () => {
    const navigate = useNavigate();
@@ -52,9 +53,9 @@ const EditPost = () => {
    const data = new FormData();
    data.append('file', file);
    data.append('upload_preset', 'images_preset')
-     let cloudName = process.env.cloudName;
+     let cloudName = env.cloudName;
      let resourceType = 'image';
-     let api = `https://api.cloudinary.com/v1_1/dsjpexdie/${resourceType}/upload`
+     let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
  
  
      try{
@@ -88,7 +89,7 @@ const EditPost = () => {
    if(image_1Url && image_2Url){
      const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
    
-      fetch('http://localhost:4000/posts/api/editpost', {
+      fetch('https://sql-blog.onrender.com/posts/api/editpost', {
        method: 'POST',
        headers: {
          'Content-Type': 'application/json'

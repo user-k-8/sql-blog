@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {useState} from "react"; 
 import Modal from './Modal';
 import {ThreeDots} from 'react-loader-spinner'
+import env from "react-dotenv";
 
 const AddPost = () => {
   
@@ -53,16 +54,16 @@ const uploadFile = async (file )=>{
   const data = new FormData();
   data.append('file', file);
   data.append('upload_preset', 'images_preset')
-    let cloudName = process.env.cloudName;
-    let resourceType = 'image';
-    let api = `https://api.cloudinary.com/v1_1/dsjpexdie/image/upload`
+  let cloudName = env.cloudName;
+  let resourceType = 'image';
+  let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
 
 
-    try{
-        const response = await fetch('https://api.cloudinary.com/v1_1/dsjpexdie/image/upload', {
-          method: 'POST',
-          body: data
-        })
+  try{
+      const response = await   fetch(api, {
+        method: 'POST',
+        body: data,
+      })
 
         const responseData = await response.json()
         console.log(responseData)
@@ -90,7 +91,7 @@ const handleSubmit = async (e)=>{
 
     const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
 
-     fetch('http://localhost:4000/posts/api/upload', {
+     fetch('https://sql-blog.onrender.com/posts/api/upload', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
