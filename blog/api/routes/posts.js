@@ -1,11 +1,9 @@
 const express = require('express');
 const bodyParser =require('body-parser');
-const multer = require('multer');
 const db = require('../db');
 
 const router = express.Router();
 
-const upload = multer({dest:'./uploads'});
 
 //get all posts//
 router.get('/api/allposts', (req, res) => {
@@ -19,7 +17,7 @@ router.get('/api/allposts', (req, res) => {
 })
 
 //add post
-router.post('/api/upload',upload.array('images', 2), async (req, res) => {
+router.post('/api/upload', async (req, res) => {
    
  const {title, content, author, published_date, user_id, image_1, image_2} = req.body;
 
@@ -35,7 +33,7 @@ router.post('/api/upload',upload.array('images', 2), async (req, res) => {
   });
 
 //edit post
-router.post('/api/editpost', upload.array('images', 2), async (req, res) => {
+router.post('/api/editpost',async (req, res) => {
     
 const {post_id, title, content, author, published_date, user_id, views} = req.body;
 //edit  post
