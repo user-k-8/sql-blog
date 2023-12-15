@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {useState} from "react"; 
 import Modal from './Modal';
 import {ThreeDots} from 'react-loader-spinner'
-import env from "react-dotenv";
 
 const EditPost = () => {
    const navigate = useNavigate();
@@ -53,7 +52,7 @@ const EditPost = () => {
    const data = new FormData();
    data.append('file', file);
    data.append('upload_preset', 'images_preset')
-     let cloudName = env.cloudName;
+     let cloudName = process.env.REACT_APP_CLOUD_NAME;
      let resourceType = 'image';
      let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
  

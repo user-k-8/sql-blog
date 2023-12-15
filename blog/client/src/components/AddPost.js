@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import {useState} from "react"; 
 import Modal from './Modal';
 import {ThreeDots} from 'react-loader-spinner'
-import env from "react-dotenv";
+
 
 const AddPost = () => {
   
@@ -54,7 +54,7 @@ const uploadFile = async (file )=>{
   const data = new FormData();
   data.append('file', file);
   data.append('upload_preset', 'images_preset')
-  let cloudName = env.cloudName;
+  let cloudName = process.env.REACT_APP_CLOUD_NAME;
   let resourceType = 'image';
   let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
 
@@ -123,6 +123,7 @@ const pageScroll=(id)=>{
          <div className='create-post-hero'>
             <Navbar/>
             <div className='create-post-hero-text'>
+              {process.env.REACT_APP_CLOUD_NAME}
                 <h1>Share your <br/> insights</h1>
                 <h3>write a blog post<br/> about fascinating tech</h3>
                  <button onClick={()=>{pageScroll('create-posts-top')}} className='hero-btn create-post-hero-btn'>Start writing</button>
