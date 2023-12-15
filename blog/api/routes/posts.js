@@ -7,7 +7,7 @@ const router = express.Router();
 
 const upload = multer({dest:'./uploads'});
 
-//get all posts
+//get all posts//
 router.get('/api/allposts', (req, res) => {
  
         var sql = `SELECT * FROM posts ORDER BY post_id DESC`;
@@ -21,11 +21,11 @@ router.get('/api/allposts', (req, res) => {
 //add post
 router.post('/api/upload',upload.array('images', 2), async (req, res) => {
    
- const {title, content, author, published_date, user_id} = req.body;
+ const {title, content, author, published_date, user_id, image_1, image_2} = req.body;
 
 //insert post
 
-    var sql = `INSERT INTO posts (title, content, author, published_date, user_id) VALUES ( "${title}", "${content}", "${author}",  '${published_date}',  ${user_id})`;
+    var sql = `INSERT INTO posts (title, content, author, published_date, user_id, image_1, image_2) VALUES ( "${title}", "${content}", "${author}",  '${published_date}',  ${user_id}, '${image_1}', '${image_2}')`;
     db.query(sql, function (err, result) {
       if (err) throw err;
       console.log("post created");

@@ -13,6 +13,7 @@ const ViewPost = () => {
 
   const location = useLocation();
   const {element} = location.state;
+  console.log(element)
 
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => {
@@ -35,7 +36,7 @@ const ViewPost = () => {
   
     //delete post
     try {
-      const response =  fetch('https://sql-blog.onrender.com/posts/api/deletePost', {
+      const response =  fetch('http://localhost:4000/posts/api/deletePost', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +61,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
 
  useEffect(()=>{
    //fetch views
-  fetch('https://sql-blog.onrender.com/posts/api/views', {
+  fetch('http://localhost:4000/posts/api/views', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
@@ -99,12 +100,12 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
              </div>
 
              <p className='post-content'>  
-               <img src={img1} alt='' className='view-post-img1'/>
+               <img src={element.image_1?element.image_1: img1} alt='' className='view-post-img1'/>
                <span >{section1}</span>     
             </p>
 
             <p className='post-content'>       
-              <img src={img2} alt='' className='view-post-img2'/>
+              <img src={element.image_2?element.image_2: img2 } alt='' className='view-post-img2'/>
               <span >{section2}</span>    
             </p>
 

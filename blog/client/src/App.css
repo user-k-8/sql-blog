@@ -12,7 +12,11 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-
+.loader{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .nav-container{
     display: flex;
     align-items: center;

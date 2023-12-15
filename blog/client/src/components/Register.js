@@ -22,7 +22,7 @@ const Register = () => {
    
     event.preventDefault();
 
-    fetch('https://sql-blog.onrender.com/api/register', {
+    fetch('http://localhost:4000/api/register', {
   method: 'POST',
   headers: {
       'Content-Type': 'application/json'
