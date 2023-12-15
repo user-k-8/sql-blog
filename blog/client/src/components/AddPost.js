@@ -123,7 +123,6 @@ const pageScroll=(id)=>{
          <div className='create-post-hero'>
             <Navbar/>
             <div className='create-post-hero-text'>
-              {process.env.REACT_APP_CLOUD_NAME}
                 <h1>Share your <br/> insights</h1>
                 <h3>write a blog post<br/> about fascinating tech</h3>
                  <button onClick={()=>{pageScroll('create-posts-top')}} className='hero-btn create-post-hero-btn'>Start writing</button>
