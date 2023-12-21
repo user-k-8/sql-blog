@@ -2,8 +2,11 @@ import React, { useState , useEffect} from 'react';
 import logo from './img/logo2.png'
 import  bars from './img/bars.png'
 import { HashLink as Link } from 'react-router-hash-link';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+
+  const navigate = useNavigate()
 
   const mobile = window.innerWidth<=768? true: false;
   const [menuOpened, setMenuOpened] = React.useState(false)
@@ -36,6 +39,7 @@ const handleLogInOut =()=>{
     
    if(storedUser){
       localStorage.removeItem("user");
+      navigate('/')
      }
      else{
      setPath('/login')
