@@ -71,7 +71,7 @@ fetch(`https://sql-blog.onrender.com/comments/api/addComment/${element.post_id}`
 })
 .then(res=> {
   res.json()
-  if(res.status === 401 || 403){
+  if(res.status === 401 || res.status === 403){
     alert('Not authenticated. Please log in.')
 }})
 .then(data => {
@@ -98,7 +98,7 @@ const handleDelete =(comment)=>{
   })
  .then(res=> {
   res.json()
-  if(res.status === 401 || 403){
+  if(res.status === 401 || res.status === 403){
     alert('Not authenticated. Please log in.')
   }
 })

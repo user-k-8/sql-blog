@@ -7,6 +7,10 @@ const router = express.Router();
 
 const secret = process.env.secret
 //get all posts//
+router.get('/api/test', (req, res) => {
+ 
+ res.send("hello")
+})
 
 router.get('/api/allposts', (req, res) => {
  

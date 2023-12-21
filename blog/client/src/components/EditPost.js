@@ -98,7 +98,7 @@ const EditPost = () => {
        body: JSON.stringify(form),
      }).then(res=> {
       res.json()
-      if(res.status === 401 || 403){
+      if(res.status === 401 || res.status === 403){
         alert('Not authenticated. Please log in.')
     }})
      .then(data => {

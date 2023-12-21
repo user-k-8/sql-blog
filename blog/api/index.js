@@ -11,7 +11,7 @@ db.connect(()=>{
 const app = express();
 
 app.use(express.json())
-//https://sql-blog.onrender.com//
+
 app.use(cors()); // Enable CORS with custom options
 
 app.use((req, res, next) => {
@@ -19,7 +19,6 @@ app.use((req, res, next) => {
     next();
   });
 
-const PORT = 4000
 app.use(cookieParser())
 app.use(bodyParser.json());
 
@@ -32,7 +31,8 @@ app.use('/posts', postsRoute)
 app.use('/comments', commentsRoute)
 app.use('/api', usersRoute)
 
-app.listen(PORT, () => {
-    console.log(`Server running on localhost: ${PORT}`)
+
+app.listen(4000, () => {
+    console.log(`Server running on localhost: 4000`)
 })
 
