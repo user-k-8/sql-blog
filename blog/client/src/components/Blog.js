@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar'
-import BlogPostCard from './BlogPostCard';
+import BlogPostCard from './BlogPostCard'
+import {connect} from 'react-redux';
 import {ClipLoader} from 'react-spinners';
 import Footer from './Footer'
 import { HashLink as Link } from 'react-router-hash-link';
-
-const Blog = () => {
-
-const [backendData, setBackendData] =useState([])
+const Blog = (props) => {
 
 
-  const fetchData = ()=>{
-    // get blog posts
-       fetch("https://sql-blog.onrender.com/posts/api/allposts").then(
-         response => response.json()
-       ).then(
-         data=> {
-             setBackendData(data)
-         }
-       ).catch(error => {
-         console.error('Error:', error);
-     });
-   
-   }
-  fetchData();
+  const [backendData, setBackendData] =useState([])
+
+const fetchData = ()=>{
+    fetch("https://sql-blog.onrender.com/posts/api/allposts").then(
+      response => response.json()
+    ).then(
+      data=> {
+          setBackendData(data)
+      }
+    ).catch(error => {
+      console.error('Error:', error);
+  });
+
+}
+fetchData();
 
 
 
@@ -50,13 +49,15 @@ const [backendData, setBackendData] =useState([])
 
   const nextPage = () => {
      if(currentPage<maxPages){
-        setCurrentPage(currentPage + 1);       
+        setCurrentPage(currentPage + 1);
+       
      }
   };
 
   const prevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1)
+
     }
   }
 
@@ -69,9 +70,10 @@ const [backendData, setBackendData] =useState([])
   })
 
 
+
   return (
-  <div className='blog-container' id='top'>
-        <div className='blog-hero'>
+    <div className='blog-container' id='top'>
+            <div className='blog-hero'>
             <Navbar/>
             <div className='hero-text'>
                 <h1>Melsoft <br/> Academy<br/> Blog</h1>
@@ -88,23 +90,24 @@ const [backendData, setBackendData] =useState([])
                    <p key={i}><BlogPostCard element={item}/></p>
                     ))
                     ) :<p className='loading-text' >               
-                             Loading...  
+                       Loading...  
                       <ClipLoader color={'white'} size={40}/>
                       </p> }        
             </div>
             <br/>
             <div className='load-buttons-container'>
-                <Link smooth  to= {{pathname:'/', hash: "posts-top"}} className='load-btn' onClick={prevPage} style={{display: currentPage === 1  ? "none" :"flex"}}>
-                    Prev
-               </Link>
-               <Link smooth  to= {{pathname:'/', hash: "posts-top"}} className='load-btn' onClick={nextPage} style={{display: currentPage===(maxPages)  ? "none" :"flex"}} >
-                     Next
-               </Link>
-            </div>
+            <Link smooth  to= {{pathname:'/', hash: "posts-top"}} className='load-btn' onClick={prevPage} style={{display: currentPage === 1  ? "none" :"flex"}}>
+               Prev
+            </Link>
+            <Link smooth  to= {{pathname:'/', hash: "posts-top"}} className='load-btn' onClick={nextPage} style={{display: currentPage===(maxPages)  ? "none" :"flex"}} >
+                   Next
+            </Link>
+        </div>
         </div>
         <Footer/>
-   </div>
+    </div>
   )
 }
+
 
 export default Blog
