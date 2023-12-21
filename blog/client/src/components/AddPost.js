@@ -106,7 +106,7 @@ const handleSubmit = async (e)=>{
       alert('Blog post created!');
       navigate('/')
     })
-    .catch(error => console.log(error));
+    .catch(error => console.error(error));
   
 
   }
