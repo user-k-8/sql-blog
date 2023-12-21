@@ -68,7 +68,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
       });
       const data = await response.json()
    
-        if(response.status === 401 || 403){
+        if(response.status === 401 || response.status ===403){
           alert('Not authenticated. Please log in.')
         }
   
