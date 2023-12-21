@@ -23,7 +23,7 @@ const [backendData, setBackendData] =useState([])
      });
    
    }
-     fetchData();
+  fetchData();
 
 
 
@@ -59,6 +59,14 @@ const [backendData, setBackendData] =useState([])
       setCurrentPage(currentPage - 1)
     }
   }
+
+  useEffect(()=>{
+    if(currentItems.length<1){
+      fetchData();
+      console.log(1)
+   }
+
+  })
 
 
   return (

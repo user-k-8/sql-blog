@@ -48,6 +48,8 @@ fetch('https://sql-blog.onrender.com/api/register', {
     console.error('Error:', error);
     });
  }
+
+ 
  
   return (
 <div id='register-top' >
