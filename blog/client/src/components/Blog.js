@@ -9,10 +9,9 @@ const Blog = () => {
 
 const [backendData, setBackendData] =useState([])
 
-useEffect(()=>{
 
   const fetchData = ()=>{
-    // get posts
+    // get blog posts
        fetch("https://sql-blog.onrender.com/posts/api/allposts").then(
          response => response.json()
        ).then(
@@ -25,7 +24,7 @@ useEffect(()=>{
    
    }
      fetchData();
-},[])
+
 
 
 

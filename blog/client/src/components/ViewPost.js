@@ -13,7 +13,6 @@ const ViewPost = () => {
 
   const location = useLocation();
   const {element} = location.state;
-  console.log(element)
 
   const [modalOpen, setModalOpen] = useState(false);
   const handleModalOpen = () => {
