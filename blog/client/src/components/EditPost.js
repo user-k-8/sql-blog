@@ -89,7 +89,7 @@ const EditPost = () => {
    if(image_1Url && image_2Url){
      const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
    
-      fetch(`http://localhost:4000/posts/api/editpost/${element.post_id}`, {
+      fetch(`https://sql-blog.onrender.com/posts/api/editpost/${element.post_id}`, {
        method: 'PUT',
        headers: {
          'Content-Type': 'application/json',

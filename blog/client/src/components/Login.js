@@ -26,7 +26,7 @@ const handleSubmit =  (event)=>{
     event.preventDefault()
     setLoading(true);
 
-fetch('http://localhost:4000/api/login', {
+fetch('https://sql-blog.onrender.com/api/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

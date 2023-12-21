@@ -31,7 +31,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
 
  useEffect(()=>{
    //fetch post
-  fetch(`http://localhost:4000/posts/api/post/${element.post_id}`, {
+  fetch(`https://sql-blog.onrender.com/posts/api/post/${element.post_id}`, {
     method: 'GET'
   })
   .then(response => response.json())
@@ -61,7 +61,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
   
     //delete post
     try {
-      const response = await  fetch(`http://localhost:4000/posts/api/deletePost/${element.post_id}`, {
+      const response = await  fetch(`https://sql-blog.onrender.com/posts/api/deletePost/${element.post_id}`, {
         method: 'DELETE',
         headers: {
           'access-token': storedUser.token

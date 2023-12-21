@@ -88,7 +88,7 @@ const handleSubmit = async (e)=>{
 
   const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
 
-     fetch('http://localhost:4000/posts/api/upload', {
+     fetch('https://sql-blog.onrender.com/posts/api/upload', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
