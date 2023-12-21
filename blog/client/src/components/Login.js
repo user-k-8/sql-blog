@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import {ThreeDots} from 'react-loader-spinner'
 
 const Login = () => {
     
   const navigate = useNavigate();
-    const [form, setForm] = React.useState( {
+
+    const [form, setForm] = useState( {
         email:"",
        password:"",   
     }); 
@@ -17,11 +19,14 @@ const handleInputChange = event=>{
     setForm({...form, [name]: type==='checkbox' ? checked : value})
 
   }
+
+const [loading, setLoading] = useState(false)
     
 const handleSubmit =  (event)=>{
     event.preventDefault()
-    
-    fetch('https://sql-blog.onrender.com/api/login', {
+    setLoading(true);
+
+fetch('http://localhost:4000/api/login', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -30,9 +35,9 @@ const handleSubmit =  (event)=>{
 })
 .then(response => response.json())
 .then(data => {
+  setLoading(false)
     // response data
     console.log('Response from server:', data);
-    localStorage.setItem('blog2Login', JSON.stringify(data));
     if(data.status=="404"){
       alert('Account does not exist! Enter correct email or register for an account')
     }
@@ -40,8 +45,8 @@ const handleSubmit =  (event)=>{
       alert('Password invalid!')
     }
     else{
-      localStorage.setItem('blog2Login', JSON.stringify(data));
       alert('Login successful!');
+      localStorage.setItem("user", JSON.stringify(data))
       navigate('/')   
     }
 })
@@ -67,6 +72,17 @@ const handleSubmit =  (event)=>{
                    <input type="password" id="password" name="password" value={form.password} className='post-input'  onChange={handleInputChange}/>
                  </div>
                  <br/>
+                 <div className='loader'>
+                          {loading && <ThreeDots 
+                                       height="90"
+                                       width="120" 
+                                       radius="9"
+                                       color="white" 
+                                       ariaLabel="three-dots-loading"
+                                       wrapperStyle={{}}
+                                       wrapperClassName="" 
+                                       visible={true}  />}
+                </div>
                  <input type="submit" value="Submit" className='blog-btn' />    
               </form>
     </div>

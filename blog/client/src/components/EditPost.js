@@ -6,7 +6,10 @@ import Modal from './Modal';
 import {ThreeDots} from 'react-loader-spinner'
 
 const EditPost = () => {
+
    const navigate = useNavigate();
+   const location = useLocation();
+   const {element} = location.state;
 
    const [modalOpen, setModalOpen] = useState(false);
  
@@ -18,7 +21,7 @@ const EditPost = () => {
      setModalOpen(false);
    };
  
-   const storedUser= JSON.parse(localStorage.getItem("blog2Login"));
+   const storedUser= JSON.parse(localStorage.getItem("user"));
  
    const currentDate = new Date();
    const year = currentDate.getFullYear();
@@ -44,8 +47,6 @@ const EditPost = () => {
  const {name, value, type, checked} = event.target
  setForm({...form, [name]: type==='checkbox' ? checked : value})
  }
- 
- 
  
  const uploadFile = async (file )=>{
  
@@ -88,13 +89,18 @@ const EditPost = () => {
    if(image_1Url && image_2Url){
      const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
    
-      fetch('https://sql-blog.onrender.com/posts/api/editpost', {
-       method: 'POST',
+      fetch(`http://localhost:4000/posts/api/editpost/${element.post_id}`, {
+       method: 'PUT',
        headers: {
-         'Content-Type': 'application/json'
+         'Content-Type': 'application/json',
+         'access-token': storedUser.token
      },
-       body: JSON.stringify(updatedForm),
-     }).then(response=>response.json())
+       body: JSON.stringify(form),
+     }).then(res=> {
+      res.json()
+      if(res.status === 401 || 403){
+        alert('Not authenticated. Please log in.')
+    }})
      .then(data => {
       setLoading(false)
        console.log(data)

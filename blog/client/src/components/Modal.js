@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onClose, handleSubmit, children }) => {
         <div>
             {children}
            <div className='modal-buttons'>
-               <button className="blog-btn" onClick={handleSubmit}>Yes</button>
+               <button className="blog-btn" onClick={handleSubmit? handleSubmit: ""}>Yes</button>
                <button className="close-button blog-btn" onClick={onClose}>Cancel</button>
            </div>
         </div>     

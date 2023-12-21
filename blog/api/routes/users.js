@@ -1,13 +1,11 @@
 const express= require('express');
 const router = express.Router()
-const fs = require('fs');
-const fsPromises = require('fs').promises;
-const multer = require('multer');
 const bcrypt = require('bcrypt');
-const path = require('path');
 const db = require('../db');
+const jwt = require('jsonwebtoken');
+require('dotenv').config()// for .env file
 
-
+const secret = process.env.secret
 router.post('/register', async (req, res)=>{
 
     const {username, email, password}= req.body
@@ -16,34 +14,33 @@ router.post('/register', async (req, res)=>{
     var sql = `SELECT email  FROM users WHERE email = "${email}"`;
     db.query(sql, async function (err, result) {
       if (err) throw err;
-     console.log(result);
+      console.log(result);
 
-  if (result[0]) {
-    console.log("email already registered")
-   return res.sendStatus(409); //Conflict 
-   }else{
+     if (result[0]) {
+         console.log("email already registered")
+         return res.sendStatus(409); //Conflict 
+     }
+     else{
     
-    //encrypt the password
-    const hashedPwd = await bcrypt.hash(password, 10);
+       //encrypt the password
+       const hashedPwd = await bcrypt.hash(password, 10);
     
-    //store the new user
-
+      //store the new user
         var sql = `INSERT INTO users (username, email, password) VALUES ( "${username}", "${email}", "${hashedPwd}")`;
         db.query(sql, function (err, result) {
           if (err) throw err;
           console.log("1 record inserted");
+          return res.sendStatus(200);
         });
-  
-    return res.sendStatus(200)
 }  });
 
 })
 
 router.post('/login',  async (req, res)=>{
 
-    const {email, password}= req.body
+        const {email, password}= req.body
 
-        var sql = `SELECT email, password  FROM users WHERE email = "${email}"`;
+        var sql = `SELECT email, password, user_id  FROM users WHERE email = "${email}"`;
           db.query(sql, function (err, result) {
           if (err) throw err;
           console.log(result)
@@ -56,23 +53,17 @@ router.post('/login',  async (req, res)=>{
 
          // evaluate password 
          const match =  bcrypt.compareSync(password, result[0].password);
-         if (match) {
-          console.log('logged in')
-    
-            var sql = `SELECT user_id FROM users WHERE email = "${email}"`;
-            db.query(sql, function (err, result) {
-              if (err) throw err;
-              console.log(result[0].user_id);
-
-              let blog2Login = {userEmail: email, loginStatus:"LoggedIn", user_id: result[0].user_id};
-              return  res.status(200).send(blog2Login)
-            });   
-    
+         if (!match) {    
+             return  res.status(401).send({status: "401"});//unauthorised   
         } 
-        else {
-          return  res.status(401).send({status: "401"});//unauthorised
-        }
-        });
+
+            //generate token
+            const token = jwt.sign({user_id: result[0].user_id, email:email}, secret, {expiresIn: '300m'});
+            return res.json({user_id: result[0].user_id, token});    
+        
+
+    });
 })
+
 
 module.exports= router

@@ -9,21 +9,25 @@ const Blog = () => {
 
 const [backendData, setBackendData] =useState([])
 
+useEffect(()=>{
 
-const fetchData = ()=>{
- // get posts
-    fetch("https://sql-blog.onrender.com/posts/api/allposts").then(
-      response => response.json()
-    ).then(
-      data=> {
-          setBackendData(data)
-      }
-    ).catch(error => {
-      console.error('Error:', error);
-  });
+  const fetchData = ()=>{
+    // get posts
+       fetch("http://localhost:4000/posts/api/allposts").then(
+         response => response.json()
+       ).then(
+         data=> {
+             setBackendData(data)
+         }
+       ).catch(error => {
+         console.error('Error:', error);
+     });
+   
+   }
+     fetchData();
+},[])
 
-}
-  fetchData();
+
 
   if(!backendData){
     return <div  className='loading-text'>Loading...</div>
@@ -57,12 +61,6 @@ const fetchData = ()=>{
     }
   }
 
-  useEffect(()=>{
-    if(currentItems.length<1){
-      fetchData();
-   }
-
-  })
 
   return (
   <div className='blog-container' id='top'>

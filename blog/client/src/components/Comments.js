@@ -1,7 +1,8 @@
 import React, { useState,useEffect} from 'react';
 import Modal from './Modal';
+import { useLocation } from 'react-router-dom';
 
-const Comments = () => {
+const Comments = ({element}) => {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
@@ -13,22 +14,18 @@ const Comments = () => {
     setModalOpen(false);
   };
 
-  const handleModalOpen2 = () => {
+  const handleModalOpen2 = (comment) => {
     setModalOpen2(true);
+    handleDelete(comment)
   };
   const handleModalClose2 = () => {
     setModalOpen2(false);
   };
 
-  const [selected, setSelected] = useState(JSON.parse(localStorage.getItem("selectedPost")))
-
-  const storedUser = JSON.parse(localStorage.getItem("blog2Login"));
+  const storedUser = JSON.parse(localStorage.getItem("user"));
 
   const [form, setForm] = useState( {
     comment:"",
-    user_id: storedUser? storedUser.user_id :"",
-    post_id: selected.post_id
-
 }); 
 
 const [comments, setComments] = React.useState([])
@@ -43,12 +40,8 @@ setForm({...form, [name]: type==='checkbox' ? checked : value})
 
 useEffect(()=>{
   //fetch comments
-  fetch('https://sql-blog.onrender.com/comments/api/allComments', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({post_id: selected.post_id})
+  fetch(`http://localhost:4000/comments/api/allComments/${element.post_id}`, {
+    method: 'GET',
   })
   .then(response => response.json())
   .then(data => {
@@ -60,7 +53,7 @@ useEffect(()=>{
     console.error('Error:', error);
   });
 
-})
+},[load])
 
 
 
@@ -68,17 +61,23 @@ const handleSubmit = (event)=>{
 
 event.preventDefault();
 //add comment
-fetch('https://sql-blog.onrender.com/comments/api/addComment', {
+fetch(`http://localhost:4000/comments/api/addComment/${element.post_id}`, {
   method: 'POST',
   headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'access-token': storedUser.token
   },
   body: JSON.stringify(form)
 })
-.then(response =>{response.json()})
+.then(res=> {
+  res.json()
+  if(res.status === 401 || 403){
+    alert('Not authenticated. Please log in.')
+}})
 .then(data => {
   //  response data 
    console.log(data)
+   setLoad(prev=> !prev)
 })
 .catch(error => {
   console.error('Error:', error);
@@ -88,20 +87,24 @@ alert('Comment added!');
 setCommentForm({commentButton:"Add Comment", formDisplay:"none"});
 }
 
-const handleDelete =(element)=>{
-
+const handleDelete =(comment)=>{
+  console.log(comment)
   //delete comment
-  fetch('https://sql-blog.onrender.com/comments/api/deleteComment', {
-    method: 'POST',
+  fetch(`http://localhost:4000/comments/api/deleteComment/${comment.comment_id}`, {
+    method: 'DELETE',
     headers: {
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({comment_id: element.comment_id})
+       'access-token': storedUser.token
+    }
   })
-  .then(response => {response.json()})
+ .then(res=> {
+  res.json()
+  if(res.status === 401 || 403){
+    alert('Not authenticated. Please log in.')
+  }
+})
   .then(data => {
     console.log(data)
-   
+    setLoad(prev=> !prev)
   })
   .catch(error => {
     console.error('Error:', error);
@@ -143,15 +146,17 @@ return (
           </div>
        </div>
        {comments.length>0?
-         comments.map((element)=>(
+         comments.map((comment)=>(
+        <div key={comment.comment_id}>
           <div className='comment-wrapper'>
-              <h3>{element.username}</h3>
-              <p className='comment-content'>{element.comment}</p>
-              <button onClick={handleModalOpen2} className='blog-btn'  style={{display: storedUser ? storedUser.user_id == element.user_id ? "flex" : "none":"none" }}  >Delete</button>
-              <Modal isOpen={modalOpen2} onClose={handleModalClose2} handleSubmit={()=>{handleDelete(element)}}>
+              <h3>{comment.username}</h3>
+              <p className='comment-content'>{comment.comment}</p>
+              <button onClick={()=>handleModalOpen2(comment)} className='blog-btn'  style={{display: storedUser ? storedUser.user_id ? "flex" : "none":"none" }}  >Delete</button>
+              <Modal  isOpen={modalOpen2} onClose={handleModalClose2} >
                  <p style={{color:"black"}}>Are you sure you want to delete this comment?</p>
              </Modal>
           </div>
+       </div>
       )) :
           <p className='grey'>No comments</p>
       }

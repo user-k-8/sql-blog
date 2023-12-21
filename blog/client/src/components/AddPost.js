@@ -20,7 +20,7 @@ const AddPost = () => {
     setModalOpen(false);
   };
 
-  const storedUser= JSON.parse(localStorage.getItem("blog2Login"));
+  const storedUser= JSON.parse(localStorage.getItem("user"));
 
   const currentDate = new Date();
   const year = currentDate.getFullYear();
@@ -38,8 +38,6 @@ const AddPost = () => {
    image_2:""
  }); 
 
- const [selectedFiles1, setSelectedFiles1] = useState(null);
-const [selectedFiles2, setSelectedFiles2] = useState(null);
 
 const handleInputChange = event=>{
 
@@ -47,7 +45,8 @@ const {name, value, type, checked} = event.target
 setForm({...form, [name]: type==='checkbox' ? checked : value})
 }
 
-
+const [selectedFiles1, setSelectedFiles1] = useState(null);
+const [selectedFiles2, setSelectedFiles2] = useState(null);
 
 const uploadFile = async (file )=>{
 
@@ -64,7 +63,6 @@ const uploadFile = async (file )=>{
         method: 'POST',
         body: data,
       })
-
         const responseData = await response.json()
         console.log(responseData)
         return responseData.secure_url
@@ -84,20 +82,24 @@ const handleSubmit = async (e)=>{
 
   setModalOpen(false);
   setLoading(true)
+
  const image_1Url = await uploadFile( selectedFiles1)
  const image_2Url = await uploadFile(selectedFiles2 )
 
-  if(image_1Url && image_2Url){
+  const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
 
-    const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
-
-     fetch('https://sql-blog.onrender.com/posts/api/upload', {
+     fetch('http://localhost:4000/posts/api/upload', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'access-token': storedUser.token
     },
       body: JSON.stringify(updatedForm),
-    }).then(response=>response.json())
+    }).then(res=> {
+      res.json()
+      if(res.status === 401 || 403){
+        alert('Not authenticated. Please log in.')
+    }})
     .then(data => {
       setLoading(false)
       console.log(data)
@@ -105,7 +107,7 @@ const handleSubmit = async (e)=>{
       navigate('/')
     })
     .catch(error => console.log(error));
-  }
+  
 
   }
 
@@ -145,12 +147,12 @@ const pageScroll=(id)=>{
                   <div className='form-row'>
                      <label htmlFor='image_1'>Upload Image 1 <span className="star">*</span></label>
                      <br/><br/>
-                     <input  type='file' name='images' id='image_1' placeholder='Upload Image' onChange={(e) => setSelectedFiles1(e.target.files[0])} className='post-input' required/>
+                     <input  type='file' name='images' id='image_1' placeholder='Upload Image' onChange={(e) => setSelectedFiles1(e.target.files[0])} className='post-input' required />
                   </div>   
             <div className='form-row'>
                  <label htmlFor='image_2'>Upload Image 2 <span className="star">*</span></label>
                  <br/><br/>
-                <input  type='file' name='images' id='image_2' placeholder='Upload Image' onChange={(e) => setSelectedFiles2(e.target.files[0])} className='post-input' />
+                <input  type='file' name='images' id='image_2' placeholder='Upload Image' onChange={(e) => setSelectedFiles2(e.target.files[0])} className='post-input' required/>
             </div>   
                   <div className="post form-row">
                      <label htmlFor="content">Blog Post <span className="star">*</span></label>
