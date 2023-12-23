@@ -62,9 +62,9 @@ router.put('/api/editpost/:id',async (req, res) => {
     const post_id = req.params.id
     const user_id =userInfo.user_id
 
-   const {title, content, author, published_date} = req.body;
+   const {title, content, author, published_date, image_1, image_2} = req.body;
   //edit  post
-    var sql = `UPDATE posts SET title= "${title}", content="${content}", author="${author}",  published_date= '${published_date}' WHERE post_id= ${post_id} AND user_id = ${user_id}`;
+    var sql = `UPDATE posts SET title= "${title}", content="${content}", author="${author}",  published_date= '${published_date}' , image_1 = '${image_1}', image_2 = '${image_2}' WHERE post_id= ${post_id} AND user_id = ${user_id}`;
     db.query(sql, function (err, result) {
       if (err) return res.status(500).json(err);
       console.log("post updated");
