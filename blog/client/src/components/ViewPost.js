@@ -93,7 +93,7 @@ const eyeIcon = (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" 
             <h3>Date : {formattedDate}</h3>
 
             <div className='edit-btns' style={{display: storedUser ? storedUser.user_id  ? "flex" : "none":"none" }}>
-               <Link to="/editpost" state={{element}}> <button className='blog-btn' >Edit </button></Link>
+               <Link to="/editpost" state={{...element, content: post.content}}> <button className='blog-btn' >Edit </button></Link>
                <br/>
                <button className='blog-btn delete-btn' onClick={handleModalOpen} >Delete</button>
                

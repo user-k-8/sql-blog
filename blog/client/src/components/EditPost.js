@@ -9,8 +9,8 @@ const EditPost = () => {
 
    const navigate = useNavigate();
    const location = useLocation();
-   const {element} = location.state;
-
+   const element = location.state;
+   
    const [modalOpen, setModalOpen] = useState(false);
  
    const handleModalOpen = (e) => {
@@ -30,9 +30,9 @@ const EditPost = () => {
    const formattedDate = `${year}-${month}-${day}`;
  
    const [form, setForm] = useState({
-     title:"",
-     content:"", 
-     author:"",
+     title:element.title,
+     content: element.content, 
+     author: element.author,
     published_date: formattedDate,
     user_id: storedUser.user_id,
     image_1:"",
@@ -95,7 +95,7 @@ const EditPost = () => {
          'Content-Type': 'application/json',
          'access-token': storedUser.token
      },
-       body: JSON.stringify(form),
+       body: JSON.stringify(updatedForm),
      }).then(res=> {
       res.json()
       if(res.status === 401 || res.status === 403){

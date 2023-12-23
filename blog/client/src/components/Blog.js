@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar'
 import BlogPostCard from './BlogPostCard'
-import {connect} from 'react-redux';
 import {ClipLoader} from 'react-spinners';
 import Footer from './Footer'
 import { HashLink as Link } from 'react-router-hash-link';

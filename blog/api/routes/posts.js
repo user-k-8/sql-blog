@@ -6,12 +6,8 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const secret = process.env.secret
-//get all posts//
-router.get('/api/test', (req, res) => {
- 
- res.send("hello")
-})
 
+//get all posts
 router.get('/api/allposts', (req, res) => {
  
         var sql = `SELECT post_id, author, title, published_date FROM posts ORDER BY post_id DESC`;
@@ -51,10 +47,7 @@ router.post('/api/upload', async (req, res) => {
       return res.status(200).send({message: "Post created"});
     
   });  
-
   })
-
- 
   });
 
 //edit post
