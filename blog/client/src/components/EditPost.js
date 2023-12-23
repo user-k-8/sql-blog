@@ -140,12 +140,12 @@ const EditPost = () => {
             <div className='form-row'>
                  <label htmlFor='image_2'>Upload Image 2 <span className="star">*</span></label>
                  <br/><br/>
-                <input  type='file' name='images' id='image_2' placeholder='Upload Image' onChange={(e) => setSelectedFiles2(e.target.files[0])} className='post-input' />
+                <input  type='file' name='images' id='image_2' placeholder='Upload Image' onChange={(e) => setSelectedFiles2(e.target.files[0])} className='post-input' required/>
             </div>   
                   <div className="post form-row">
                      <label htmlFor="content">Blog Post <span className="star">*</span></label>
                      <br/><br/>
-                     <textarea type="text" id="content" name="content" value={form.content} className='blog-post-input' onChange={handleInputChange} />
+                     <textarea type="text" id="content" name="content" value={form.content} className='blog-post-input' onChange={handleInputChange} required/>
                   </div>
                   <br/>
                   <div className='loader'>
