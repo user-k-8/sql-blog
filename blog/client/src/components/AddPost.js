@@ -32,10 +32,10 @@ const AddPost = () => {
     title:"",
     content:"", 
     author:"",
-   published_date: formattedDate,
-   user_id: storedUser.user_id,
-   image_1:"",
-   image_2:""
+    published_date: formattedDate,
+    user_id: storedUser.user_id,
+    image_1:"",
+    image_2:""
  }); 
 
 
@@ -50,12 +50,12 @@ const [selectedFiles2, setSelectedFiles2] = useState(null);
 
 const uploadFile = async (file )=>{
 
-  const data = new FormData();
-  data.append('file', file);
-  data.append('upload_preset', 'images_preset')
-  let cloudName = process.env.REACT_APP_CLOUD_NAME;
-  let resourceType = 'image';
-  let api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
+   const data = new FormData();
+   data.append('file', file);
+   data.append('upload_preset', 'images_preset')
+   const cloudName = process.env.REACT_APP_CLOUD_NAME;
+   const resourceType = 'image';
+   const api = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`
 
 
   try{
@@ -102,13 +102,10 @@ const handleSubmit = async (e)=>{
     }})
     .then(data => {
       setLoading(false)
-      console.log(data)
       alert('Blog post created!');
       navigate('/')
     })
     .catch(error => console.error(error));
-  
-
   }
 
 const pageScroll=(id)=>{

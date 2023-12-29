@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config()// for .env file
 
 const secret = process.env.secret
+
 router.post('/register', async (req, res)=>{
 
     const {username, email, password}= req.body
@@ -32,7 +33,7 @@ router.post('/register', async (req, res)=>{
           console.log("1 record inserted");
           return res.sendStatus(200);
         });
-}  });
+}});
 
 })
 
@@ -56,12 +57,9 @@ router.post('/login',  async (req, res)=>{
          if (!match) {    
              return  res.status(401).send({status: "401"});//unauthorised   
         } 
-
             //generate token
             const token = jwt.sign({user_id: result[0].user_id, email:email}, secret);
-            return res.json({user_id: result[0].user_id, token});    
-        
-
+            return res.json({user_id: result[0].user_id, token});         
     });
 })
 

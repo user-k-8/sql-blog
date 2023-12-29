@@ -36,6 +36,19 @@ if(Array.isArray(backendData)){
 
 }
 
+const nextPage = () => {
+  if(currentPage<maxPages){
+     setCurrentPage(currentPage + 1);
+    
+  }
+};
+
+const prevPage = () => {
+ if (currentPage > 1) {
+   setCurrentPage(currentPage - 1)
+
+ }
+}
 
   const pageScroll=(id)=>{
     const element = document.getElementById(id);
@@ -45,20 +58,6 @@ if(Array.isArray(backendData)){
      block: "start",
    });
   }}
-
-  const nextPage = () => {
-     if(currentPage<maxPages){
-        setCurrentPage(currentPage + 1);
-       
-     }
-  };
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1)
-
-    }
-  }
 
 
 

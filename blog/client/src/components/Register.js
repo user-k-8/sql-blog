@@ -20,7 +20,7 @@ const Register = () => {
     setForm({...form, [name]: type==='checkbox' ? checked : value})
     }
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = React.useState(false)
       
   const handleSubmit =  (event)=>{
    

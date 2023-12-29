@@ -9,7 +9,7 @@ const secret = process.env.secret
 //retrieve all post comments
 router.get('/api/allComments/:id', (req, res)=>{
   
-  const post_id=req.params.id;
+   const post_id=req.params.id;
 
     var sql = `select users.username, comments.comment, comments.comment_id, comments.user_id from users inner join comments on users.user_id = comments.user_id where comments.post_id= ${post_id} order by comment_id desc`;
     db.query(sql, function (err, result) {
@@ -59,9 +59,7 @@ jwt.verify(token, secret, (err, userInfo)=>{
     console.log('comment deleted')
     return res.status(200).json({message: "Comment deleted"});
 });    
-
 })
- 
 })
 
 module.exports =router;

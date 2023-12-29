@@ -86,8 +86,7 @@ const EditPost = () => {
   const image_1Url = await uploadFile( selectedFiles1)
   const image_2Url = await uploadFile(selectedFiles2)
 
-   if(image_1Url && image_2Url){
-     const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
+  const updatedForm = {...form, image_1: String(image_1Url), image_2: String(image_2Url) }
    
       fetch(`https://sql-blog.onrender.com/posts/api/editpost/${element.post_id}`, {
        method: 'PUT',
@@ -108,7 +107,7 @@ const EditPost = () => {
        navigate('/')
      })
      .catch(error => console.error(error));
-   }
+   
    }
 
  
